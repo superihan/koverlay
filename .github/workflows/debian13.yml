@@ -19,7 +19,7 @@ jobs:
         run: |
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            ca-certificates cmake g++ make dpkg-dev pkg-config \
+            ca-certificates cmake g++ make dpkg-dev pkg-config file \
             libxkbcommon-dev qt6-base-dev qt6-base-private-dev qt6-declarative-dev qt6-wayland-dev \
             liblayershellqtinterface-dev libwayland-dev
       - uses: actions/checkout@v4
