@@ -20,7 +20,7 @@ jobs:
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             ca-certificates cmake g++ make dpkg-dev pkg-config \
-            qt6-base-dev qt6-declarative-dev qt6-wayland-dev \
+            libxkbcommon-dev qt6-base-dev qt6-declarative-dev qt6-wayland-dev \
             liblayershellqtinterface-dev libwayland-dev
       - uses: actions/checkout@v4
       - name: Configure and build Debian package
