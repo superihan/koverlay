@@ -74,6 +74,5 @@ set(CPACK_RPM_PACKAGE_REQUIRES
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "KOverlay contributors")
 set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "layer-shell-qt, qt6-base-plugins, qml6-module-qtquick, qml6-module-qtquick-window")
 
 include(CPack)
