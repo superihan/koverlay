@@ -1,0 +1,35 @@
+name: Debian 13 package
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-24.04
+    container: debian:13
+    steps:
+      - name: Install build dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            ca-certificates cmake g++ make dpkg-dev pkg-config \
+            qt6-base-dev qt6-declarative-dev qt6-wayland-dev \
+            liblayershellqtinterface-dev libwayland-dev
+      - uses: actions/checkout@v4
+      - name: Configure and build Debian package
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB
+          cmake --build build --parallel
+          cd build && cpack -G DEB
+      - uses: actions/upload-artifact@v4
+        with:
+          name: koverlay-debian13
+          path: build/*.deb
+          if-no-files-found: error
